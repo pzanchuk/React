@@ -6,8 +6,10 @@ function Header(){
     <div>
       <h1>Help Queue!</h1>
       <Link to="/">Home</Link>
-        <h1></h1>
+      <br/>
       <Link to="/newticket">Create Ticket</Link>
+      <br/>
+      <Link to="/wrongpage">to non existing page</Link>
     </div>
 
   );

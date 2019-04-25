@@ -1,4 +1,5 @@
 import React from 'react';
+import buttonImage from '../assets/images/button.png';
 
 function NewTicketForm(){
   return (
@@ -25,13 +26,22 @@ function NewTicketForm(){
           font-size: 20px;
         }
         button{
-          border: 2px solid #6d5cf2;
+
           padding: 5px;
           margin: 20px;
-          background-color:  #fffff1;
+    
+        }
+
+        button:active{
+          background-color: black;
+
         }
         h3{
           color: #6d5cf2;
+        }
+
+        img{
+          height: 50px;
         }
       `}</style>
 
@@ -51,7 +61,7 @@ function NewTicketForm(){
           id='issue'
           placeholder='Describe your issue.'/>
           <br/>
-        <button type='submit'>Help!</button>
+        <button type='submit'><img src = {buttonImage}/></button>
       </form>
     </div>
   );
