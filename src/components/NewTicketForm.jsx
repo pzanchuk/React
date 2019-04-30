@@ -1,7 +1,22 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { v4 } from 'uuid';
 import buttonImage from '../assets/images/button.png';
 
-function NewTicketForm(){
+function NewTicketForm(props){
+
+  let _names = null;
+  let _location = null;
+  let _issue = null;
+
+  function handleNewTicketFormSubmission(event) {
+    event.preventDefault();
+    props.onNewTicketCreation({names: _names.value, location: _location.value, issue: _issue.value, id: v4()});
+    _names.value = '';
+    _location.value = '';
+    _issue.value = '';
+  }
+
   return (
     <div>
       <hr/>
@@ -29,7 +44,7 @@ function NewTicketForm(){
 
           padding: 5px;
           margin: 20px;
-    
+
         }
 
         button:active{
@@ -45,26 +60,33 @@ function NewTicketForm(){
         }
       `}</style>
 
-      <form>
+      <form onSubmit={handleNewTicketFormSubmission}>
         <h3>Create Ticket</h3>
         <input
           type='text'
           id='names'
-          placeholder='Pair Names'/>
+          placeholder='Pair Names'
+          ref={(input) => {_names = input;}} />
           <br/>
         <input
           type='text'
           id='location'
-          placeholder='Location'/>
+          placeholder='Location'
+          ref={(input) => {_location = input;}} />
           <br/>
         <textarea
           id='issue'
-          placeholder='Describe your issue.'/>
+          placeholder='Describe your issue.'
+          ref={(textarea) => {_issue = textarea;}} />
           <br/>
         <button type='submit'><img src = {buttonImage}/></button>
       </form>
     </div>
   );
 }
+
+NewTicketForm.propTypes = {
+  onNewTicketCreation: PropTypes.func
+};
 
 export default NewTicketForm;
