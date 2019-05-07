@@ -12,15 +12,15 @@ function TicketList(props){
         location={ticket.location}
         issue={ticket.issue}
         formattedWaitTime={ticket.formattedWaitTime}
-        currentRouterPath={props.currentRouterPath}
+        currentRouterPath={props.currentRouterPath}               
         key={ticketId}
         onTicketSelection={props.onTicketSelection}
         ticketId={ticketId}/>;
       })}
-    </div>
+    </div>              
   );
 }
-
+          
 TicketList.propTypes = {
   ticketList: PropTypes.object,
   currentRouterPath: PropTypes.string,
