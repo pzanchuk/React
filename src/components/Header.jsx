@@ -10,6 +10,8 @@ function Header(){
       <Link to="/newticket">Create Ticket</Link>
       <br/>
       <Link to="/wrongpage">to non existing page</Link>
+      <br/>
+      <Link to="/admin">to Admin</Link>
     </div>
 
   );
