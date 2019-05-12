@@ -1,34 +1,30 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import c from './../constants';
 
 function Ticket(props){
-  const ticketInformation = 
-  <div>
 
-  <style jsx>{`
-    div {
-      background-color: #9fbff2;
-    }
-    div:hover {
-      background-color: #85aff2;
-    }
-    .example{
-      color: #6d5cf2;
-    }
-  `}</style>
+  function handleSavingSelectedTicket(ticketId){
+    const { dispatch } = props;
+    const action = {
+      type: c.SELECT_TICKET,
+      ticketId: ticketId
+    };
+    dispatch(action);
+  }
 
-  <h3 className="example">{props.location} - {props.names}</h3>
-  <h4>{props.formattedWaitTime} ago...</h4>
-  
-  <hr/>
-</div>;
-
+  const ticketInformation =
+    <div>
+      <h3>{props.location} - {props.names}</h3>
+      <h4>{props.formattedWaitTime} ago.</h4>
+      <hr/>
+    </div>;
   if (props.currentRouterPath === '/admin'){
     return (
-      <div onClick={() => {props.onTicketSelection(props.ticketId);}}>
+      <div onClick={() => {handleSavingSelectedTicket(props.ticketId);}}>
         {ticketInformation}
       </div>
-      
     );
   } else {
     return (
@@ -45,8 +41,7 @@ Ticket.propTypes = {
   issue: PropTypes.string,
   formattedWaitTime: PropTypes.string.isRequired,
   currentRouterPath: PropTypes.string,
-  onTicketSelection: PropTypes.func,
   ticketId: PropTypes.string.isRequired
 };
 
-export default Ticket;
+export default connect()(Ticket);
